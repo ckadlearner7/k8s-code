@@ -9,6 +9,14 @@ metadata:
 spec:
   containers:
     - name: db
-      image: postgres:9.4
+      image: "postgres:10.1"
       ports:
         - containerPort: 5432
+      volumeMounts:
+      - name: db-data
+        mountPath: /var/lib/postgresql/data
+  volumes:
+  - name: db-data
+    hostPath:
+      path: /var/lib/pgdata
+      type: DirectoryOrCreate       
